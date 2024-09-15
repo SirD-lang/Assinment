@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">YoUrWhY</div>
+        <div class="nav-items">
+            <a href="index.html">Home</a>
+            <a href="health_info.html">Health Infomation</a>
+            <a href="bmi_calculator.html">CheckYourBMI</a>   
+        </div>
+    </nav>
+    <main>
+        <section class="basiccolumn-left">
+            <h2>What is BMI?</h2>
+            <p>Body mass index (BMI) is a medical screening tool that measures the ratio of your height to your weight to estimate the amount of body fat you have. Healthcare providers calculate BMI by using weight in kilograms (kg) divided by the square of height in meters (m2).</p>
+        </section>
+        <section class="basiccolumn-left">
+            <h2>Calculate Your BMI</h2>
+            <form id="bmiForm">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required>
+                <br>
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+                <br>
+                <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+            </form>
+            <p id="bmiResult"></p>
+        </section>
+        <script>
+        function calculateBMI() {
+        const height = parseFloat(document.getElementById('height').value);
+        const weight = parseFloat(document.getElementById('weight').value);
+        if (isNaN(height) || isNaN(weight)) {
+        alert('Please enter valid numbers for height and weight.');
+        return;
+        }
+
+        const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+        let category = '';
+
+        if (bmi < 18.5) 
+        {
+            category = 'Underweight';
+        } 
+        else if (bmi >= 18.5 && bmi <= 24.9) 
+        {
+        category = 'Normal weight';
+        }
+        else if (bmi >= 25 && bmi <= 29.9) 
+        {
+        category = 'Overweight';
+        } 
+        else 
+        {
+        category = 'Obesity';
+        }
+
+        document.getElementById('bmiResult').innerText = `Your BMI is ${bmi}, which is considered ${category}.`;
+        }
+        </script>
+        <section class="basiccolumn-left">
+            <h2>BMI Categories</h2>
+            <ul>
+                <li>Underweight: BMI < 18.5</li>
+                <li>Normal weight: BMI 18.5–24.9</li>
+                <li>Overweight: BMI 25–29.9</li>
+                <li>Obesity: BMI 30 or greater</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>By:Muhammad Idris Bin Mohd Nasir  ID:BPJ231210193  Class:DIT4/1</p>
+    </footer>
+</body>
+</html>
